@@ -9,15 +9,15 @@ export default function AboutSection() {
   ];
 
   return (
-    <section id="about" className="py-20 bg-muted/30">
+    <section id="about" className="py-12 lg:py-16 bg-muted/30">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
+        <div className="text-center mb-12">
           <h2 className="text-4xl font-bold text-foreground mb-4">About Me</h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
             Get to know more about my journey, skills, and passion for development
           </p>
         </div>
-        <div className="grid md:grid-cols-2 gap-12 items-center">
+        <div className="grid md:grid-cols-2 gap-8 lg:gap-12 items-center">
           <div className="space-y-6">
             <Card className="card-hover">
               <CardContent className="p-8">

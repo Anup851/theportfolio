@@ -92,15 +92,15 @@ export default function ContactSection() {
   ];
 
   return (
-    <section id="contact" className="py-20 bg-muted/30">
+    <section id="contact" className="py-12 lg:py-16 bg-muted/30">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
+        <div className="text-center mb-12">
           <h2 className="text-4xl font-bold text-foreground mb-4">Let's Work Together</h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
             Ready to bring your ideas to life? Get in touch and let's discuss your next project
           </p>
         </div>
-        <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto">
           <div className="space-y-8">
             <Card>
               <CardContent className="p-8">

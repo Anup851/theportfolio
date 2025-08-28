@@ -28,9 +28,9 @@ export default function ExperienceSection() {
   ];
 
   return (
-    <section id="experience" className="py-20">
+    <section id="experience" className="py-12 lg:py-16">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
+        <div className="text-center mb-12">
           <h2 className="text-4xl font-bold text-foreground mb-4">Experience & Education</h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
             My journey in technology and continuous learning
@@ -43,7 +43,7 @@ export default function ExperienceSection() {
             {timeline.map((item, index) => (
               <div 
                 key={index} 
-                className="relative flex items-start mb-12"
+                className="relative flex items-start mb-8 lg:mb-12"
                 data-testid={`timeline-item-${index}`}
               >
                 <div className="flex-shrink-0 w-16 h-16 bg-primary rounded-full flex items-center justify-center relative z-10">

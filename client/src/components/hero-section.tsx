@@ -12,9 +12,9 @@ export default function HeroSection() {
   return (
     <section id="home" className="min-h-screen flex items-center relative overflow-hidden">
       <div className="absolute inset-0 hero-gradient opacity-5"></div>
-      <div className="container mx-auto px-6 py-20">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div className="space-y-8 fade-in">
+      <div className="container mx-auto px-6 py-12 lg:py-16">
+        <div className="grid md:grid-cols-2 gap-8 lg:gap-12 items-center">
+          <div className="space-y-6 lg:space-y-8 fade-in">
             <div>
               <h1 className="text-5xl md:text-6xl font-bold text-foreground leading-tight">
                 Hi, I'm <span className="text-primary">Anup Singh</span>
@@ -25,7 +25,7 @@ export default function HeroSection() {
               Building responsive, user-friendly web experiences with modern technologies. 
               Passionate about creating interactive applications and AI-powered solutions.
             </p>
-            <div className="flex flex-wrap gap-4">
+            <div className="flex flex-wrap gap-3 lg:gap-4">
               <Button
                 onClick={scrollToContact}
                 data-testid="button-contact"
@@ -41,7 +41,7 @@ export default function HeroSection() {
                 Download Resume
               </Button>
             </div>
-            <div className="flex space-x-6">
+            <div className="flex space-x-4 lg:space-x-6">
               <a
                 href="https://github.com"
                 target="_blank"
