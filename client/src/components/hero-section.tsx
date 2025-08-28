@@ -10,9 +10,9 @@ export default function HeroSection() {
   };
 
   return (
-    <section id="home" className="min-h-screen flex items-center relative overflow-hidden">
+    <section id="home" className="min-h-[80vh] lg:min-h-[85vh] flex items-center relative overflow-hidden">
       <div className="absolute inset-0 hero-gradient opacity-5"></div>
-      <div className="container mx-auto px-6 py-12 lg:py-16">
+      <div className="container mx-auto px-6 py-8 lg:py-10">
         <div className="grid md:grid-cols-2 gap-8 lg:gap-12 items-center">
           <div className="space-y-6 lg:space-y-8 fade-in">
             <div>
