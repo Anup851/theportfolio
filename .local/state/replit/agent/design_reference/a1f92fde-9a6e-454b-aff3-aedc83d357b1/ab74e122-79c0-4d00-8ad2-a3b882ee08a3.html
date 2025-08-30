@@ -1,0 +1,765 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anup Singh - Frontend Developer Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                borderRadius: {
+                    lg: "var(--radius)",
+                    md: "calc(var(--radius) - 2px)",
+                    sm: "calc(var(--radius) - 4px)",
+                },
+                colors: {
+                    background: "var(--background)",
+                    foreground: "var(--foreground)",
+                    card: {
+                        DEFAULT: "var(--card)",
+                        foreground: "var(--card-foreground)",
+                    },
+                    popover: {
+                        DEFAULT: "var(--popover)",
+                        foreground: "var(--popover-foreground)",
+                    },
+                    primary: {
+                        DEFAULT: "var(--primary)",
+                        foreground: "var(--primary-foreground)",
+                    },
+                    secondary: {
+                        DEFAULT: "var(--secondary)",
+                        foreground: "var(--secondary-foreground)",
+                    },
+                    muted: {
+                        DEFAULT: "var(--muted)",
+                        foreground: "var(--muted-foreground)",
+                    },
+                    accent: {
+                        DEFAULT: "var(--accent)",
+                        foreground: "var(--accent-foreground)",
+                    },
+                    destructive: {
+                        DEFAULT: "var(--destructive)",
+                        foreground: "var(--destructive-foreground)",
+                    },
+                    border: "var(--border)",
+                    input: "var(--input)",
+                    ring: "var(--ring)",
+                },
+                fontFamily: {
+                    sans: ["var(--font-sans)"],
+                }
+            },
+        }
+    };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --background: hsl(0 0% 98%);
+            --foreground: hsl(222 13% 11%);
+            --card: hsl(0 0% 100%);
+            --card-foreground: hsl(222 13% 11%);
+            --popover: hsl(0 0% 100%);
+            --popover-foreground: hsl(222 13% 11%);
+            --primary: hsl(217 91% 60%);
+            --primary-foreground: hsl(0 0% 98%);
+            --secondary: hsl(210 40% 96%);
+            --secondary-foreground: hsl(222 13% 11%);
+            --muted: hsl(210 40% 96%);
+            --muted-foreground: hsl(215 16% 47%);
+            --accent: hsl(210 40% 96%);
+            --accent-foreground: hsl(222 13% 11%);
+            --destructive: hsl(0 84% 60%);
+            --destructive-foreground: hsl(0 0% 98%);
+            --border: hsl(214 32% 91%);
+            --input: hsl(214 32% 91%);
+            --ring: hsl(217 91% 60%);
+            --radius: 0.75rem;
+            --font-sans: "Inter", sans-serif;
+        }
+        
+        [data-theme="dark"] {
+            --background: hsl(222 13% 6%);
+            --foreground: hsl(210 40% 98%);
+            --card: hsl(222 13% 11%);
+            --card-foreground: hsl(210 40% 98%);
+            --popover: hsl(222 13% 11%);
+            --popover-foreground: hsl(210 40% 98%);
+            --primary: hsl(217 91% 70%);
+            --primary-foreground: hsl(222 13% 6%);
+            --secondary: hsl(222 13% 11%);
+            --secondary-foreground: hsl(210 40% 98%);
+            --muted: hsl(222 13% 11%);
+            --muted-foreground: hsl(215 16% 65%);
+            --accent: hsl(222 13% 11%);
+            --accent-foreground: hsl(210 40% 98%);
+            --destructive: hsl(0 62% 50%);
+            --destructive-foreground: hsl(0 0% 98%);
+            --border: hsl(222 13% 16%);
+            --input: hsl(222 13% 16%);
+            --ring: hsl(217 91% 70%);
+        }
+
+        * {
+            font-family: var(--font-sans);
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--accent)) 100%);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-4px);
+        }
+        
+        .skill-badge {
+            transition: all 0.2s ease;
+        }
+        
+        .skill-badge:hover {
+            transform: scale(1.05);
+        }
+        
+        .nav-link {
+            position: relative;
+            transition: color 0.2s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: hsl(var(--primary));
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+        
+        .floating-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.6s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-background text-foreground transition-colors duration-300" data-theme="light">
+    <!-- @COMPONENT: Navigation -->
+    <nav class="sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="text-xl font-bold text-primary">
+                    <span data-bind="user.name">Anup Singh</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="nav-link text-foreground hover:text-primary">Home</a>
+                    <a href="#about" class="nav-link text-foreground hover:text-primary">About</a>
+                    <a href="#projects" class="nav-link text-foreground hover:text-primary">Projects</a>
+                    <a href="#skills" class="nav-link text-foreground hover:text-primary">Skills</a>
+                    <a href="#experience" class="nav-link text-foreground hover:text-primary">Experience</a>
+                    <a href="#contact" class="nav-link text-foreground hover:text-primary">Contact</a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button id="theme-toggle" class="p-2 rounded-lg bg-muted hover:bg-accent transition-colors">
+                        <i class="fas fa-sun text-foreground" id="theme-icon"></i>
+                    </button>
+                    <button class="md:hidden p-2 rounded-lg bg-muted hover:bg-accent">
+                        <i class="fas fa-bars text-foreground"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- @END_COMPONENT: Navigation -->
+
+    <!-- @COMPONENT: Hero Section -->
+    <section id="home" class="min-h-screen flex items-center relative overflow-hidden">
+        <div class="absolute inset-0 hero-gradient opacity-5"></div>
+        <div class="container mx-auto px-6 py-20">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="space-y-8 fade-in">
+                    <div>
+                        <h1 class="text-5xl md:text-6xl font-bold text-foreground leading-tight">
+                            Hi, I'm <span class="text-primary" data-bind="user.name">Anup Singh</span>
+                        </h1>
+                        <p class="text-2xl text-muted-foreground mt-4" data-bind="user.profession">Frontend Developer</p>
+                    </div>
+                    <p class="text-lg text-muted-foreground leading-relaxed" data-bind="user.tagline">
+                        Building responsive, user-friendly web experiences with modern technologies. 
+                        Passionate about creating interactive applications and AI-powered solutions.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#contact" class="bg-primary text-primary-foreground px-8 py-3 rounded-lg font-medium hover:bg-primary/90 transition-colors">
+                            Contact Me
+                        </a>
+                        <a href="#" data-implementation="Link to resume PDF" class="border border-border bg-card text-card-foreground px-8 py-3 rounded-lg font-medium hover:bg-accent transition-colors">
+                            Download Resume
+                        </a>
+                    </div>
+                    <div class="flex space-x-6">
+                        <a href="#" data-implementation="GitHub profile link" class="text-muted-foreground hover:text-primary transition-colors">
+                            <i class="fab fa-github text-2xl"></i>
+                        </a>
+                        <a href="#" data-implementation="LinkedIn profile link" class="text-muted-foreground hover:text-primary transition-colors">
+                            <i class="fab fa-linkedin text-2xl"></i>
+                        </a>
+                        <a href="mailto:contact@anupsingh.dev" data-implementation="Contact email" class="text-muted-foreground hover:text-primary transition-colors">
+                            <i class="fas fa-envelope text-2xl"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="flex justify-center">
+                    <div class="relative floating-animation">
+                        <!-- Professional developer workspace illustration -->
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=800" alt="Professional developer portrait" class="rounded-full w-80 h-80 object-cover border-8 border-card shadow-2xl" data-mock="true" />
+                        <div class="absolute inset-0 rounded-full bg-gradient-to-tr from-primary/20 to-accent/20"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: Hero Section -->
+
+    <!-- @COMPONENT: About Section -->
+    <section id="about" class="py-20 bg-muted/30">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-foreground mb-4">About Me</h2>
+                <p class="text-muted-foreground text-lg max-w-2xl mx-auto">
+                    Get to know more about my journey, skills, and passion for development
+                </p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <div class="bg-card p-8 rounded-xl border border-border card-hover">
+                        <p class="text-foreground leading-relaxed text-lg" data-bind="user.bio">
+                            I'm Anup Singh, a passionate frontend developer who loves creating interactive web applications 
+                            and AI chatbots. Currently pursuing my BCA degree (2024-2027), I specialize in React, JavaScript, 
+                            and modern web technologies.
+                        </p>
+                        <p class="text-muted-foreground mt-4 leading-relaxed">
+                            My goal is to deliver clean, efficient, and user-friendly solutions that make a real difference. 
+                            I'm particularly excited about the intersection of web development and artificial intelligence.
+                        </p>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-6">
+                    <div class="bg-card p-6 rounded-xl border border-border text-center card-hover">
+                        <div class="text-3xl font-bold text-primary mb-2" data-bind="stats.projects">15+</div>
+                        <p class="text-muted-foreground">Projects Completed</p>
+                    </div>
+                    <div class="bg-card p-6 rounded-xl border border-border text-center card-hover">
+                        <div class="text-3xl font-bold text-primary mb-2" data-bind="stats.experience">2+</div>
+                        <p class="text-muted-foreground">Years Experience</p>
+                    </div>
+                    <div class="bg-card p-6 rounded-xl border border-border text-center card-hover">
+                        <div class="text-3xl font-bold text-primary mb-2" data-bind="stats.technologies">10+</div>
+                        <p class="text-muted-foreground">Technologies</p>
+                    </div>
+                    <div class="bg-card p-6 rounded-xl border border-border text-center card-hover">
+                        <div class="text-3xl font-bold text-primary mb-2" data-bind="stats.clients">5+</div>
+                        <p class="text-muted-foreground">Happy Clients</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: About Section -->
+
+    <!-- @COMPONENT: Projects Section -->
+    <section id="projects" class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-foreground mb-4">Featured Projects</h2>
+                <p class="text-muted-foreground text-lg max-w-2xl mx-auto">
+                    A showcase of my recent work and the technologies I've mastered
+                </p>
+            </div>
+            <!-- @MAP: projects.map(project => ( -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-card rounded-xl border border-border overflow-hidden card-hover" data-bind="project" data-mock="true">
+                    <!-- AI chatbot interface screenshot with modern design -->
+                    <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=300" alt="Genie AI Chatbot Interface" class="w-full h-48 object-cover" />
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-foreground mb-2">Genie AI Chatbot</h3>
+                        <p class="text-muted-foreground mb-4">
+                            A multipurpose AI chatbot with real-time data, memory, history, voice features, and dark/light mode support.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">React</span>
+                            <span class="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">AI/ML</span>
+                            <span class="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">Node.js</span>
+                        </div>
+                        <div class="flex space-x-4">
+                            <a href="https://chatwithgenie.netlify.app" class="text-primary hover:text-primary/80 transition-colors" data-implementation="Live demo link">
+                                <i class="fas fa-external-link-alt mr-1"></i>Demo
+                            </a>
+                            <a href="#" class="text-primary hover:text-primary/80 transition-colors" data-implementation="GitHub repo link">
+                                <i class="fab fa-github mr-1"></i>GitHub
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-card rounded-xl border border-border overflow-hidden card-hover" data-bind="project" data-mock="true">
+                    <!-- Modern portfolio website design -->
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=300" alt="Portfolio Website Design" class="w-full h-48 object-cover" />
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-foreground mb-2">Portfolio Website</h3>
+                        <p class="text-muted-foreground mb-4">
+                            My personal portfolio website built with React and Tailwind CSS, featuring responsive design and smooth animations.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">React</span>
+                            <span class="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">Tailwind</span>
+                            <span class="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">Responsive</span>
+                        </div>
+                        <div class="flex space-x-4">
+                            <a href="#" class="text-primary hover:text-primary/80 transition-colors" data-implementation="Live demo link">
+                                <i class="fas fa-external-link-alt mr-1"></i>Demo
+                            </a>
+                            <a href="#" class="text-primary hover:text-primary/80 transition-colors" data-implementation="GitHub repo link">
+                                <i class="fab fa-github mr-1"></i>GitHub
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-card rounded-xl border border-border overflow-hidden card-hover" data-bind="project" data-mock="true">
+                    <!-- E-commerce web application interface -->
+                    <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=300" alt="E-commerce Application" class="w-full h-48 object-cover" />
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-foreground mb-2">E-commerce App</h3>
+                        <p class="text-muted-foreground mb-4">
+                            Full-stack e-commerce application with user authentication, payment integration, and admin dashboard.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">React</span>
+                            <span class="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">MongoDB</span>
+                            <span class="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">Express</span>
+                        </div>
+                        <div class="flex space-x-4">
+                            <a href="#" class="text-primary hover:text-primary/80 transition-colors" data-implementation="Live demo link">
+                                <i class="fas fa-external-link-alt mr-1"></i>Demo
+                            </a>
+                            <a href="#" class="text-primary hover:text-primary/80 transition-colors" data-implementation="GitHub repo link">
+                                <i class="fab fa-github mr-1"></i>GitHub
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- @END_MAP )) -->
+        </div>
+    </section>
+    <!-- @END_COMPONENT: Projects Section -->
+
+    <!-- @COMPONENT: Skills Section -->
+    <section id="skills" class="py-20 bg-muted/30">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-foreground mb-4">Skills & Technologies</h2>
+                <p class="text-muted-foreground text-lg max-w-2xl mx-auto">
+                    The tools and technologies I use to bring ideas to life
+                </p>
+            </div>
+            <div class="grid md:grid-cols-4 gap-6">
+                <!-- @MAP: skills.map(skill => ( -->
+                <div class="bg-card p-6 rounded-xl border border-border text-center skill-badge" data-bind="skill" data-mock="true">
+                    <div class="text-4xl mb-4">
+                        <i class="fab fa-html5 text-primary"></i>
+                    </div>
+                    <h3 class="font-semibold text-foreground mb-2">HTML5</h3>
+                    <p class="text-muted-foreground text-sm">Semantic markup</p>
+                </div>
+                
+                <div class="bg-card p-6 rounded-xl border border-border text-center skill-badge" data-bind="skill" data-mock="true">
+                    <div class="text-4xl mb-4">
+                        <i class="fab fa-css3-alt text-primary"></i>
+                    </div>
+                    <h3 class="font-semibold text-foreground mb-2">CSS3</h3>
+                    <p class="text-muted-foreground text-sm">Modern styling</p>
+                </div>
+                
+                <div class="bg-card p-6 rounded-xl border border-border text-center skill-badge" data-bind="skill" data-mock="true">
+                    <div class="text-4xl mb-4">
+                        <i class="fab fa-js-square text-primary"></i>
+                    </div>
+                    <h3 class="font-semibold text-foreground mb-2">JavaScript</h3>
+                    <p class="text-muted-foreground text-sm">ES6+ features</p>
+                </div>
+                
+                <div class="bg-card p-6 rounded-xl border border-border text-center skill-badge" data-bind="skill" data-mock="true">
+                    <div class="text-4xl mb-4">
+                        <i class="fab fa-react text-primary"></i>
+                    </div>
+                    <h3 class="font-semibold text-foreground mb-2">React.js</h3>
+                    <p class="text-muted-foreground text-sm">Component-based</p>
+                </div>
+                
+                <div class="bg-card p-6 rounded-xl border border-border text-center skill-badge" data-bind="skill" data-mock="true">
+                    <div class="text-4xl mb-4">
+                        <i class="fab fa-node-js text-primary"></i>
+                    </div>
+                    <h3 class="font-semibold text-foreground mb-2">Node.js</h3>
+                    <p class="text-muted-foreground text-sm">Server-side JS</p>
+                </div>
+                
+                <div class="bg-card p-6 rounded-xl border border-border text-center skill-badge" data-bind="skill" data-mock="true">
+                    <div class="text-4xl mb-4">
+                        <i class="fas fa-wind text-primary"></i>
+                    </div>
+                    <h3 class="font-semibold text-foreground mb-2">Tailwind CSS</h3>
+                    <p class="text-muted-foreground text-sm">Utility-first CSS</p>
+                </div>
+                
+                <div class="bg-card p-6 rounded-xl border border-border text-center skill-badge" data-bind="skill" data-mock="true">
+                    <div class="text-4xl mb-4">
+                        <i class="fas fa-robot text-primary"></i>
+                    </div>
+                    <h3 class="font-semibold text-foreground mb-2">AI Development</h3>
+                    <p class="text-muted-foreground text-sm">Chatbots & ML</p>
+                </div>
+                
+                <div class="bg-card p-6 rounded-xl border border-border text-center skill-badge" data-bind="skill" data-mock="true">
+                    <div class="text-4xl mb-4">
+                        <i class="fas fa-plug text-primary"></i>
+                    </div>
+                    <h3 class="font-semibold text-foreground mb-2">API Integration</h3>
+                    <p class="text-muted-foreground text-sm">RESTful APIs</p>
+                </div>
+                <!-- @END_MAP )) -->
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: Skills Section -->
+
+    <!-- @COMPONENT: Experience Section -->
+    <section id="experience" class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-foreground mb-4">Experience & Education</h2>
+                <p class="text-muted-foreground text-lg max-w-2xl mx-auto">
+                    My journey in technology and continuous learning
+                </p>
+            </div>
+            <div class="max-w-4xl mx-auto">
+                <div class="relative">
+                    <div class="absolute left-8 top-0 bottom-0 w-0.5 bg-border"></div>
+                    
+                    <!-- @MAP: timeline.map(item => ( -->
+                    <div class="relative flex items-start mb-12" data-bind="timeline-item" data-mock="true">
+                        <div class="flex-shrink-0 w-16 h-16 bg-primary rounded-full flex items-center justify-center relative z-10">
+                            <i class="fas fa-graduation-cap text-primary-foreground text-xl"></i>
+                        </div>
+                        <div class="ml-8 bg-card p-6 rounded-xl border border-border card-hover">
+                            <div class="flex flex-wrap items-center gap-4 mb-2">
+                                <h3 class="text-xl font-bold text-foreground">BCA Student</h3>
+                                <span class="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">2024 - 2027</span>
+                            </div>
+                            <p class="text-muted-foreground mb-3">Computer Applications</p>
+                            <p class="text-foreground">
+                                Currently pursuing Bachelor of Computer Applications with focus on modern web technologies, 
+                                programming fundamentals, and software development practices.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="relative flex items-start mb-12" data-bind="timeline-item" data-mock="true">
+                        <div class="flex-shrink-0 w-16 h-16 bg-primary rounded-full flex items-center justify-center relative z-10">
+                            <i class="fas fa-code text-primary-foreground text-xl"></i>
+                        </div>
+                        <div class="ml-8 bg-card p-6 rounded-xl border border-border card-hover">
+                            <div class="flex flex-wrap items-center gap-4 mb-2">
+                                <h3 class="text-xl font-bold text-foreground">Freelance Developer</h3>
+                                <span class="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">2023 - Present</span>
+                            </div>
+                            <p class="text-muted-foreground mb-3">Frontend Development</p>
+                            <p class="text-foreground">
+                                Developing custom web applications, AI chatbots, and responsive websites for various clients. 
+                                Specialized in React.js, modern CSS frameworks, and API integrations.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="relative flex items-start mb-12" data-bind="timeline-item" data-mock="true">
+                        <div class="flex-shrink-0 w-16 h-16 bg-primary rounded-full flex items-center justify-center relative z-10">
+                            <i class="fas fa-project-diagram text-primary-foreground text-xl"></i>
+                        </div>
+                        <div class="ml-8 bg-card p-6 rounded-xl border border-border card-hover">
+                            <div class="flex flex-wrap items-center gap-4 mb-2">
+                                <h3 class="text-xl font-bold text-foreground">Personal Projects</h3>
+                                <span class="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">2022 - Present</span>
+                            </div>
+                            <p class="text-muted-foreground mb-3">Full-Stack Development</p>
+                            <p class="text-foreground">
+                                Built multiple web applications including AI chatbots, e-commerce platforms, and portfolio websites. 
+                                Focus on user experience, performance optimization, and modern development practices.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- @END_MAP )) -->
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: Experience Section -->
+
+    <!-- @COMPONENT: Contact Section -->
+    <section id="contact" class="py-20 bg-muted/30">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-foreground mb-4">Let's Work Together</h2>
+                <p class="text-muted-foreground text-lg max-w-2xl mx-auto">
+                    Ready to bring your ideas to life? Get in touch and let's discuss your next project
+                </p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
+                <div class="space-y-8">
+                    <div class="bg-card p-8 rounded-xl border border-border">
+                        <h3 class="text-2xl font-bold text-foreground mb-6">Contact Information</h3>
+                        <div class="space-y-6">
+                            <div class="flex items-center space-x-4">
+                                <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-envelope text-primary text-xl"></i>
+                                </div>
+                                <div>
+                                    <p class="text-foreground font-medium">Email</p>
+                                    <p class="text-muted-foreground" data-bind="contact.email">contact@anupsingh.dev</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-map-marker-alt text-primary text-xl"></i>
+                                </div>
+                                <div>
+                                    <p class="text-foreground font-medium">Location</p>
+                                    <p class="text-muted-foreground" data-bind="contact.location">India</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-clock text-primary text-xl"></i>
+                                </div>
+                                <div>
+                                    <p class="text-foreground font-medium">Response Time</p>
+                                    <p class="text-muted-foreground">Within 24 hours</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex space-x-6">
+                        <a href="#" data-implementation="GitHub profile link" class="w-12 h-12 bg-card border border-border rounded-lg flex items-center justify-center hover:bg-accent transition-colors">
+                            <i class="fab fa-github text-foreground text-xl"></i>
+                        </a>
+                        <a href="#" data-implementation="LinkedIn profile link" class="w-12 h-12 bg-card border border-border rounded-lg flex items-center justify-center hover:bg-accent transition-colors">
+                            <i class="fab fa-linkedin text-foreground text-xl"></i>
+                        </a>
+                        <a href="#" data-implementation="Twitter profile link" class="w-12 h-12 bg-card border border-border rounded-lg flex items-center justify-center hover:bg-accent transition-colors">
+                            <i class="fab fa-twitter text-foreground text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="bg-card p-8 rounded-xl border border-border">
+                    <form class="space-y-6" data-implementation="Form submission logic needed">
+                        <div>
+                            <label for="name" class="block text-foreground font-medium mb-2">Name</label>
+                            <input type="text" id="name" name="name" class="w-full px-4 py-3 bg-input border border-border rounded-lg text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring" placeholder="Your full name" required>
+                        </div>
+                        <div>
+                            <label for="email" class="block text-foreground font-medium mb-2">Email</label>
+                            <input type="email" id="email" name="email" class="w-full px-4 py-3 bg-input border border-border rounded-lg text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring" placeholder="your.email@example.com" required>
+                        </div>
+                        <div>
+                            <label for="subject" class="block text-foreground font-medium mb-2">Subject</label>
+                            <input type="text" id="subject" name="subject" class="w-full px-4 py-3 bg-input border border-border rounded-lg text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring" placeholder="Project inquiry" required>
+                        </div>
+                        <div>
+                            <label for="message" class="block text-foreground font-medium mb-2">Message</label>
+                            <textarea id="message" name="message" rows="5" class="w-full px-4 py-3 bg-input border border-border rounded-lg text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring resize-none" placeholder="Tell me about your project..." required></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-primary text-primary-foreground py-3 rounded-lg font-medium hover:bg-primary/90 transition-colors">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: Contact Section -->
+
+    <!-- @COMPONENT: Footer -->
+    <footer class="py-12 bg-card border-t border-border">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+                <div>
+                    <p class="text-muted-foreground">
+                        © 2025 <span class="text-foreground font-medium" data-bind="user.name">Anup Singh</span>. All rights reserved.
+                    </p>
+                </div>
+                <div class="flex space-x-8">
+                    <a href="#home" class="text-muted-foreground hover:text-primary transition-colors">Home</a>
+                    <a href="#about" class="text-muted-foreground hover:text-primary transition-colors">About</a>
+                    <a href="#projects" class="text-muted-foreground hover:text-primary transition-colors">Projects</a>
+                    <a href="#contact" class="text-muted-foreground hover:text-primary transition-colors">Contact</a>
+                </div>
+                <div class="flex space-x-4">
+                    <a href="#" data-implementation="GitHub profile link" class="text-muted-foreground hover:text-primary transition-colors">
+                        <i class="fab fa-github text-xl"></i>
+                    </a>
+                    <a href="#" data-implementation="LinkedIn profile link" class="text-muted-foreground hover:text-primary transition-colors">
+                        <i class="fab fa-linkedin text-xl"></i>
+                    </a>
+                    <a href="mailto:contact@anupsingh.dev" data-implementation="Contact email" class="text-muted-foreground hover:text-primary transition-colors">
+                        <i class="fas fa-envelope text-xl"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- @END_COMPONENT: Footer -->
+
+    <script>
+        // Theme toggle functionality
+        (() => {
+            const themeToggle = document.getElementById('theme-toggle');
+            const themeIcon = document.getElementById('theme-icon');
+            const body = document.body;
+
+            // Check for saved theme preference or default to light
+            const currentTheme = localStorage.getItem('theme') || 'light';
+            body.setAttribute('data-theme', currentTheme);
+            updateThemeIcon(currentTheme);
+
+            themeToggle.addEventListener('click', () => {
+                const currentTheme = body.getAttribute('data-theme');
+                const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+                
+                body.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+                updateThemeIcon(newTheme);
+            });
+
+            function updateThemeIcon(theme) {
+                themeIcon.className = theme === 'light' ? 'fas fa-moon text-foreground' : 'fas fa-sun text-foreground';
+            }
+        })();
+
+        // Smooth scrolling for navigation links
+        (() => {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        })();
+
+        // Active navigation highlighting
+        (() => {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            function highlightNavigation() {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    if (window.pageYOffset >= (sectionTop - 200)) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${current}`) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+
+            window.addEventListener('scroll', highlightNavigation);
+        })();
+
+        // Form validation and submission
+        (() => {
+            const contactForm = document.querySelector('#contact form');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    // TODO: Implement form submission logic
+                    // This would typically send the form data to a backend service
+                    console.log('Form submitted:', {
+                        name: this.name.value,
+                        email: this.email.value,
+                        subject: this.subject.value,
+                        message: this.message.value
+                    });
+                    
+                    // Show success message (implement in real application)
+                    alert('Thank you for your message! I\'ll get back to you soon.');
+                    this.reset();
+                });
+            }
+        })();
+
+        // Intersection Observer for animations
+        (() => {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all sections except the hero
+            document.querySelectorAll('section:not(#home)').forEach(section => {
+                observer.observe(section);
+            });
+        })();
+    </script>
+</body>
+</html>
